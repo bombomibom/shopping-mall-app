@@ -15,19 +15,19 @@ public class DB {
 			//this.connection = DriverManager.getConnection(dbUrl);
 			
 			// mysql (heroku 업로드 후 사용 가능. 환경변수는!!! 처음부터 잡으면 null! 인식 못 함. 만약 heroku db만 사용할거면 url 전체 복붙)
-//			URI jdbUri = new URI(System.getenv("JAWSDB_URL"));
-//		    String username = jdbUri.getUserInfo().split(":")[0];
-//		    String password = jdbUri.getUserInfo().split(":")[1];
-//		    String port = String.valueOf(jdbUri.getPort());
-//		    String dbUrl = "jdbc:mysql://" + jdbUri.getHost() + ":" + port + jdbUri.getPath();
-//		    this.connection = DriverManager.getConnection(dbUrl, username, password);
+			URI jdbUri = new URI(System.getenv("JAWSDB_URL"));
+		    String username = jdbUri.getUserInfo().split(":")[0];
+		    String password = jdbUri.getUserInfo().split(":")[1];
+		    String port = String.valueOf(jdbUri.getPort());
+		    String dbUrl = "jdbc:mysql://" + jdbUri.getHost() + ":" + port + jdbUri.getPath();
+		    this.connection = DriverManager.getConnection(dbUrl, username, password);
 			
 			// postgres
-		    URI dbUri = new URI(System.getenv("DATABASE_URL"));
-		    String username = dbUri.getUserInfo().split(":")[0];
-		    String password = dbUri.getUserInfo().split(":")[1];
-		    String dbUrl = "jdbc:postgresql://" + dbUri.getHost() + ':' + dbUri.getPort() + dbUri.getPath() + "?sslmode=require";
-		    this.connection = DriverManager.getConnection(dbUrl, username, password);
+//		    URI dbUri = new URI(System.getenv("DATABASE_URL"));
+//		    String username = dbUri.getUserInfo().split(":")[0];
+//		    String password = dbUri.getUserInfo().split(":")[1];
+//		    String dbUrl = "jdbc:postgresql://" + dbUri.getHost() + ':' + dbUri.getPort() + dbUri.getPath() + "?sslmode=require";
+//		    this.connection = DriverManager.getConnection(dbUrl, username, password);
 			
 		} catch (Exception e) {
 			e.printStackTrace(); // 보통은 옆에 코드 많이 사용. 그런데 보안 측면에서 catch를 안 할 때도 있으니 참고
@@ -60,22 +60,22 @@ public class DB {
 //			statement.close();
 			
 			// mysql
-//			String sqlString = "CREATE TABLE user(`idx` int NOT NULL AUTO_INCREMENT PRIMARY KEY, `type` varchar(100), `id` varchar(100), `password` varchar(300), name varchar(100), `phone` varchar(20), `address` varchar(100), `created` datetime, `updated` datetime)";
-//			statement.execute(sqlString);
-//			sqlString = "CREATE TABLE product(`idx` int NOT NULL AUTO_INCREMENT PRIMARY KEY, `name` varchar(100), `price` int, `quantity` int, `created` datetime, `updated` datetime)";
-//			statement.execute(sqlString);
-//			sqlString = "INSERT INTO user(`type`, `id`, `password`) VALUES ('admin', 'admin', 'a1234')";
-//			statement.execute(sqlString);
-//			statement.close();
-			
-			// postgres
-			String sqlString = "CREATE TABLE user(`idx` SERIAL PRIMARY KEY, `type` varchar(100), `id` varchar(100), `password` varchar(300), name varchar(100), `phone` varchar(20), `address` varchar(100), `created` timestamp, `updated` timestamp)";
+			String sqlString = "CREATE TABLE user(`idx` int NOT NULL AUTO_INCREMENT PRIMARY KEY, `type` varchar(100), `id` varchar(100), `password` varchar(300), name varchar(100), `phone` varchar(20), `address` varchar(100), `created` datetime, `updated` datetime)";
 			statement.execute(sqlString);
-			sqlString = "CREATE TABLE product(`idx` SERIAL PRIMARY KEY, name varchar(100), `price` int, `quantity` int, `created` timestamp, `updated` timestamp)";
+			sqlString = "CREATE TABLE product(`idx` int NOT NULL AUTO_INCREMENT PRIMARY KEY, `name` varchar(100), `price` int, `quantity` int, `created` datetime, `updated` datetime)";
 			statement.execute(sqlString);
 			sqlString = "INSERT INTO user(`type`, `id`, `password`) VALUES ('admin', 'admin', 'a1234')";
 			statement.execute(sqlString);
 			statement.close();
+			
+			// postgres
+//			String sqlString = "CREATE TABLE user(`idx` SERIAL PRIMARY KEY, `type` varchar(100), `id` varchar(100), `password` varchar(300), name varchar(100), `phone` varchar(20), `address` varchar(100), `created` timestamp, `updated` timestamp)";
+//			statement.execute(sqlString);
+//			sqlString = "CREATE TABLE product(`idx` SERIAL PRIMARY KEY, name varchar(100), `price` int, `quantity` int, `created` timestamp, `updated` timestamp)";
+//			statement.execute(sqlString);
+//			sqlString = "INSERT INTO user(`type`, `id`, `password`) VALUES ('admin', 'admin', 'a1234')";
+//			statement.execute(sqlString);
+//			statement.close();
 			
 			isSuccess = true;
 		} catch (Exception e) {
