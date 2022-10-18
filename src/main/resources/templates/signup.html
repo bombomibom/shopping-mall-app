@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/common.css">
+    <script src="/js/main.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <title>회원가입 페이지</title>
+</head>
+<body>
+    <div class="join_container">
+    	<a href="#none">logo</a>
+    	<section class="join_wrap">
+    		<div class="radio_wrap">
+    			<h3>타입</h3>
+    			<input type="radio" id="rd-admin">
+    			<label for="rd-admin">관리자</label>
+    			<input type="radio" id="rd-general">
+    			<label for="rd-general">일반직원</label>
+    		</div>
+    		<div class="input_wrap">
+    			<h3>아이디</h3>
+    			<div class="input_value_wrap">
+	            	<input type="text" id="id" placeholder="아이디를 입력해주세요.">
+	            	<label for="id"></label>
+	            	<a href="#none">중복확인</a>
+	        	</div>
+	        	<div class="msg"></div>
+	        </div>
+	        <div class="input_wrap">
+    			<h3>비밀번호</h3>
+    			<div class="input_value_wrap">
+		            <input type="password" id="pw" placeholder="비밀번호를 입력해주세요.">
+		            <label for="pw"></label>
+	            </div>
+	            <div class="msg"></div>
+	        </div>
+	        <div class="input_wrap">
+    			<h3>비밀번호 확인</h3>
+    			<div class="input_value_wrap">
+		            <input type="password" id="confirmPw" placeholder="비밀번호를 확인해주세요.">
+		            <label for="confirmPw"></label>
+	            </div>
+	            <div class="msg"></div>
+	        </div>
+	        <div class="input_wrap">
+    			<h3>이름</h3>
+	            <input type="text" id="name" placeholder="이름을 입력해주세요.">
+	            <label for="name"></label>
+	        </div>
+	        <div class="input_wrap">
+    			<h3>휴대폰 번호</h3>
+	            <input type="text" id="phoneNum1" maxlength="3" oninput="changePhone1()" placeholder="000">
+	            -
+	            <input type="text" id="phoneNum2" maxlength="4" oninput="changePhone2()" placeholder="0000">
+	            -
+	            <input type="text" id="phoneNum3" maxlength="4" oninput="changePhone3()" placeholder="0000">
+	        </div>
+	        <div class="input_wrap">
+    			<h3>주소</h3>
+	            <input type="text" id="address" placeholder="주소를 입력해주세요.">
+	            <label for="address"></label>
+	        </div>
+	        <div class="btn_wrap">
+	        	<a href="/" class="btn_cancel">
+		        	<span class="">취소</span>
+		        </a>
+	        	<a href="#none" class="btn_signup">
+		        	<span class="">회원가입</span>
+		        </a>
+	        </div>
+	        
+    	</section>
+    </div>
+</body>
+</html>
