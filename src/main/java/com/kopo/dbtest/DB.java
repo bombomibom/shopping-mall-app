@@ -68,11 +68,11 @@ public class DB {
 //			statement.close();
 			
 			// postgres
-			String sqlString = "CREATE TABLE tb_user(`idx` SERIAL PRIMARY KEY, `type` varchar(100), `id` varchar(100), `password` varchar(300), name varchar(100), `phone` varchar(20), `address` varchar(100), `created` timestamp, `updated` timestamp)";
+			String sqlString = "CREATE TABLE tb_user(idx SERIAL PRIMARY KEY, type varchar(100), id varchar(100), password varchar(300), name varchar(100), phone varchar(20), address varchar(100), created timestamp, updated timestamp)";
 			statement.execute(sqlString);
-			sqlString = "CREATE TABLE product(`idx` SERIAL PRIMARY KEY, name varchar(100), `price` int, `quantity` int, `created` timestamp, `updated` timestamp)";
+			sqlString = "CREATE TABLE product(idx SERIAL PRIMARY KEY, name varchar(100), price int, quantity int, created timestamp, updated timestamp)";
 			statement.execute(sqlString);
-			sqlString = "INSERT INTO tb_user(`type`, `id`, `password`) VALUES ('admin', 'admin', 'a1234')";
+			sqlString = "INSERT INTO tb_user(type, id, password) VALUES ('admin', 'admin', 'a1234')";
 			statement.execute(sqlString);
 			statement.close();
 			
