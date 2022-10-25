@@ -1,4 +1,4 @@
-package com.kopo.dbtest;
+package com.kopo.shoppingMall;
 
 public class Product {
 	int idx;

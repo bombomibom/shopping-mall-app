@@ -5,74 +5,63 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/common.css">
-    <script src="/js/main.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <title>회원가입 페이지</title>
+    <script src="/js/main.js"></script>
+    <title>회원가입</title>
 </head>
 <body>
-    <div class="join_container">
-    	<a href="#none">logo</a>
-    	<section class="join_wrap">
-    		<div class="radio_wrap">
-    			<h3>타입</h3>
-    			<input type="radio" id="rd-admin">
-    			<label for="rd-admin">관리자</label>
-    			<input type="radio" id="rd-general">
-    			<label for="rd-general">일반직원</label>
-    		</div>
-    		<div class="input_wrap">
-    			<h3>아이디</h3>
-    			<div class="input_value_wrap">
-	            	<input type="text" id="id" placeholder="아이디를 입력해주세요.">
-	            	<label for="id"></label>
-	            	<a href="#none">중복확인</a>
-	        	</div>
-	        	<div class="msg"></div>
-	        </div>
-	        <div class="input_wrap">
-    			<h3>비밀번호</h3>
-    			<div class="input_value_wrap">
-		            <input type="password" id="pw" placeholder="비밀번호를 입력해주세요.">
-		            <label for="pw"></label>
-	            </div>
-	            <div class="msg"></div>
-	        </div>
-	        <div class="input_wrap">
-    			<h3>비밀번호 확인</h3>
-    			<div class="input_value_wrap">
-		            <input type="password" id="confirmPw" placeholder="비밀번호를 확인해주세요.">
-		            <label for="confirmPw"></label>
-	            </div>
-	            <div class="msg"></div>
-	        </div>
-	        <div class="input_wrap">
-    			<h3>이름</h3>
-	            <input type="text" id="name" placeholder="이름을 입력해주세요.">
-	            <label for="name"></label>
-	        </div>
-	        <div class="input_wrap">
-    			<h3>휴대폰 번호</h3>
-	            <input type="text" id="phoneNum1" maxlength="3" oninput="changePhone1()" placeholder="000">
-	            -
-	            <input type="text" id="phoneNum2" maxlength="4" oninput="changePhone2()" placeholder="0000">
-	            -
-	            <input type="text" id="phoneNum3" maxlength="4" oninput="changePhone3()" placeholder="0000">
-	        </div>
-	        <div class="input_wrap">
-    			<h3>주소</h3>
-	            <input type="text" id="address" placeholder="주소를 입력해주세요.">
-	            <label for="address"></label>
-	        </div>
-	        <div class="btn_wrap">
-	        	<a href="/" class="btn_cancel">
-		        	<span class="">취소</span>
-		        </a>
-	        	<a href="#none" class="btn_signup">
-		        	<span class="">회원가입</span>
-		        </a>
-	        </div>
-	        
-    	</section>
+    <div class="container_common signup_container">
+    	<h1>BOBO SHOP</h1>
+    	<div class="form-group" id="user-type-wrap">
+	    	<label>가입 유형</label><br>
+	    	<input type="radio" id="user-type-default" name="user-type" checked>
+		    <label for="user-type-default">일반회원</label>
+		    <input type="radio" id="user-type-admin" name="user-type">
+		    <label for="user-type-admin">관리자</label>
+		</div>
+		<div class="form-group" id="user-name-wrap">
+	    	<label for="user-name">이름</label>
+	    	<input type="text" class="form-control" id="user-name" placeholder="이름을 입력해주세요." maxlength="10">
+	    	<div class="error_msg"></div>
+		</div>
+		<div class="form-group" id="user-id-wrap">
+	    	<label for="user-id">아이디</label>
+	    	<div class="div_wrap">
+	    		<input type="text" class="form-control" id="user-id" placeholder="아이디를 입력해주세요." minlength="6" maxlength="12">
+	    		<input type="button" value="중복확인" class="confirm_btn check_id" onclick="checkId();" />
+	    	</div>
+	    	<div class="error_msg"></div>
+		</div>
+	  	<div class="form-group" id="user-pwd-wrap">
+	    	<label for="pwd">비밀번호</label>
+	    	<input type="password" class="form-control" id="pwd" placeholder="비밀번호를 입력해주세요." minlength="8" maxlength="20">
+	    	<div class="error_msg"></div>
+	  	</div>
+	  	<div class="form-group" id="user-confirm-pwd-wrap">
+	    	<label for="confirm-pwd">비밀번호 확인</label>
+	    	<input type="password" class="form-control" id="confirm-pwd" placeholder="비밀번호를 한 번 더 입력해주세요." minlength="8" maxlength="20">
+	    	<div class="error_msg"></div>
+	  	</div>
+		<div class="form-group" id="user-email-wrap">
+	    	<label for="user-email">이메일</label>
+	    	<input type="email" class="form-control" id="user-email" placeholder="이메일을 입력해주세요." maxlength="30">
+	    	<div class="error_msg"></div>
+		</div>
+		<div class="form-group" id="user-phone-num-wrap">
+	    	<label for="userEmail">전화번호</label>
+	    	<div class="div_wrap">
+		    	<input type="text" class="form-control" id="user-phone-1" value="010" maxlength="3">
+		    	<span class="phone_hyphen">-</span>
+		    	<input type="text" class="form-control" id="user-phone-2" placeholder="0000" maxlength="4">
+		    	<span class="phone_hyphen">-</span>
+		    	<input type="text" class="form-control" id="user-phone-3" placeholder="0000" maxlength="4">
+	    	</div>
+	    	<div class="error_msg"></div>
+		</div>
+	  	<a class="btn confirm_btn" onclick="signupAction();">회원가입</a>
+	  	<a class="btn" href="/">홈</a>
     </div>
 </body>
 </html>

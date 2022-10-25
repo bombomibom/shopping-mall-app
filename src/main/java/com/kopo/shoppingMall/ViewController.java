@@ -1,4 +1,4 @@
-package com.kopo.dbtest;
+package com.kopo.shoppingMall;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,9 +19,9 @@ public class ViewController {
 	}
 	
 	// mainList page
-	@GetMapping("/mainList")
+	@GetMapping("/main")
 	public String mainList() {
-		return "mainList";
+		return "main";
 	}
 	
 }

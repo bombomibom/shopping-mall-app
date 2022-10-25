@@ -1,3 +1,5 @@
+@charset "UTF-8";
+
 *{
 	margin: 0;
 	padding: 0;
@@ -5,4 +7,77 @@
 a{
 	color: #333;
 	text-decoration: none;
+}
+
+/* 공통 */
+.container_common{
+	width: 50%;
+	position: absolute;
+	left: 50%; 
+}
+.container_common h1{
+	margin-bottom: 60px;
+	text-align: center;
+	font-size: 10rem;
+    color: #fcedd8;
+   	font-family: 'Niconne', cursive;
+    font-weight: 700;
+    text-shadow: 4px 4px 0px #eb452b, 
+                 8px 8px 0px #efa032, 
+                 12px 12px 0px #46b59b, 
+                 16px 16px 0px #017e7f, 
+                 20px 20px 0px #052939, 
+                 24px 24px 0px #c11a2b, 
+                 28px 28px 0px #c11a2b 
+}
+.container_common .btn{
+	width: 100%; 
+	height: 45px;
+	line-height: 45px;
+	padding: 0;
+}
+.container_common .confirm_btn{
+	background: #efa032;
+	color: #fff;
+	transition: .2s;
+}
+.container_common .confirm_btn:hover{
+	color: #fff;
+	box-shadow: #052939 2px 2px 2px;
+}
+
+/* login */
+.login_container{
+	top: 50%;
+	transform: translate(-50%, -50%);
+}
+
+/* signup */
+.signup_container{
+	transform: translateX(-50%);
+}
+.signup_container #user-type-wrap label{
+	margin-right: 10px;
+}
+.signup_container .div_wrap{
+	display: flex;
+}
+.signup_container .check_id{
+	border: none;
+	border-radius: 4px;
+	margin-left: 10px;
+	padding: 0 20px;
+}
+.signup_container .phone_hyphen{
+	line-height: 45px;
+	padding: 0 10px;
+}
+.signup_container .error_msg{
+	color: red;
+	margin: 5px 0 0 7px;
+}
+
+/* bootstrap 커스터마이징 */
+.form-control{
+	height: 45px !important;
 }

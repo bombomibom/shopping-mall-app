@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/login.css">
+    <script src="/js/main.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <title>메인</title>
+</head>
+<body>
+	<header>
+	    <nav class="navbar">
+		  <div class="container-fluid">
+		    <div class="navbar-header">
+		      <a class="navbar-brand" href="/main">BOBO SHOP</a>
+		    </div>
+		    <ul class="nav navbar-nav">
+		      <li class="active"><a href="/main">홈</a></li>
+		      <li th:if="${session.userType == 'admin'}"><a href="#">회원관리</a></li>
+		      <li th:if="${session.userType == 'admin'}"><a href="#">상품관리</a></li>
+		      <li th:if="${session.userType == 'user'}"><a href="#">마이페이지</a></li>
+		      <li th:if="${session.userType == 'user'}"><a href="#">장바구니</a></li>
+		    </ul>
+		    <button class="btn btn-danger navbar-btn" onclick="logoutAction();">로그아웃</button>
+		  </div>
+		</nav>
+	</header>
+	
+	<section th:if="${session.userType == 'admin'}">
+		&nbsp; &nbsp; <span th:utext="${session.userName}"></span>님 안녕하세요.<br>
+		&nbsp; &nbsp; 관리자 페이지 입니다. 위 회원관리, 상품관리 버튼을 클릭해보세요.
+	</section>
+	
+	<section th:if="${session.userType == 'user'}">
+		&nbsp; &nbsp; <span th:utext="${session.userName}"></span>님 안녕하세요.<br>
+		&nbsp; &nbsp; 일반 유저 페이지 입니다. 위 마이페이지, 장바구니 버튼을 클릭해보세요.
+	</section>
+	
+</body>
+</html>
