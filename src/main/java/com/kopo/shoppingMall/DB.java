@@ -19,6 +19,10 @@ public class DB {
 		this.dbTableName = dbTableName;
 	}
 	
+	/**
+	 * DB에 접속한다.
+	 * @desc   sqlite, mysql, postgres 세 가지 DB 중 mysql을 대표로 사용
+	 */
 	private void open() {
 		try {
 			// sqlite
@@ -50,6 +54,10 @@ public class DB {
 		}
 	}
 	
+	/**
+	 * DB 접속을 해제한다.
+	 * @desc   sqlite, mysql, postgres 세 가지 DB 중 mysql을 대표로 사용
+	 */
 	private void close() {
 		try {
 			if(connection != null) {
@@ -60,7 +68,11 @@ public class DB {
 		}				
 	}
 	
-	// 테이블 생성
+	/**
+	 * 유저 및 제품 정보 테이블을 생성한다.
+	 * @desc   sqlite, mysql, postgres 세 가지 DB 중 mysql을 대표로 사용
+	 * @return isSuccess - 테이블 생성 성공 여부
+	 */
 	public boolean createTable() {
 		boolean isSuccess = false;
 		this.open();
@@ -102,7 +114,12 @@ public class DB {
 		return isSuccess;
 	}
 	
-	// 로그인
+	/**
+	 * 유저 아이디와 패스워드가 존재하는지 조회한다.
+	 * @param userId - 백엔드에서 전달받은 유저 아이디
+	 * @param userPw - 백엔드에서 전달받은 유저 패스워드
+	 * @return isSuccess - 조회여부
+	 */
 	public boolean confirmUser(String userId, String userPw) {
 		boolean isSuccess = false;
 		this.open();
@@ -125,7 +142,11 @@ public class DB {
 		return isSuccess;
 	}
 	
-	// 유저 정보 가져오기(user_type, user_name)
+	/**
+	 * 유저 아이디에 해당되는 유저 유형과 이름을 가져온다.
+	 * @param userId - 백엔드에서 전달받은 유저 아이디
+	 * @return result - HashMap 타입으로 묶은 유저 유형과 이름
+	 */
 	public HashMap<String, String> getUserInfo(String userId) {
 		this.open();
 		HashMap<String, String> result = new HashMap<String, String>();
@@ -148,8 +169,12 @@ public class DB {
 		return result;
 	}
 	
-	// 아이디 중복체크
-	public boolean checkUserId(String userId) {
+	/**
+	 * 중복된 아이디가 있는지 조회한다.
+	 * @param userId - 백엔드에서 전달받은 유저 아이디
+	 * @return result - 조회여부
+	 */
+	public boolean checkDuplicateUserId(String userId) {
 		boolean isSuccess = false;
 		this.open();
 		try {

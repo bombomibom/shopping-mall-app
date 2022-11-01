@@ -9,59 +9,141 @@
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="/js/main.js"></script>
-    <title>회원가입</title>
+    <title>BOBO SHOP :: 회원가입</title>
+    <script type="text/javascript">
+    
+    	/**
+		 * 가입유형(일반회원, 관리자)에 맞는 회원가입 폼을 노출시킨다.
+		 * @param checkedInputId - 체크된 가입유형이 가지고 있는 아이디
+		 * @desc  파라미터와 동일한 이름의 클래스는 display-on 클래스를 추가하고, 아닌 경우는 반대로 처리한다.
+		 */
+	    function showSignUpForm(checkedInputId){
+			$(".signup-wrap").each(function(){
+				if($(this).hasClass(checkedInputId)){
+					$(this).removeClass('display-off');
+					$(this).addClass('display-on');
+				} else {
+					$(this).removeClass('display-on');
+					$(this).addClass('display-off');
+				}
+			})
+		}
+    
+	    var clickCntDuplicateBtn = 0;
+    	
+	    $(document).ready(function(){
+	    	
+	    	
+	    	$("input[type='radio']").change(function(){
+	    		showSignUpForm($("input[name='user-type']:checked").attr("id"));
+	    	})
+	    	
+	    	$(".user-id").keyup(function(){
+	    		
+	    		if($(this).attr('minLength') <= $(this).val().length){
+	    			console.log($(this).val().length);
+	    			$(this).next("input[type='button']").addClass('activate-btn')
+	    		} else {
+	    			$(this).next("input[type='button']").removeClass('activate-btn')
+	    		}
+	    	})
+	    	
+	    });
+    	
+    	
+    	
+    </script>
+    <style type="text/css">
+    	.container-common .display-on{
+    		display: block;
+    	}
+    	.container-common .display-off{
+    		display: none;
+    	}
+    	.admin-user{
+    		display: none;
+    	}
+    </style>
 </head>
 <body>
-    <div class="container_common signup_container">
+    <div class="container-common container-signup">
     	<h1>BOBO SHOP</h1>
     	<div class="form-group" id="user-type-wrap">
 	    	<label>가입 유형</label><br>
-	    	<input type="radio" id="user-type-default" name="user-type" checked>
-		    <label for="user-type-default">일반회원</label>
-		    <input type="radio" id="user-type-admin" name="user-type">
-		    <label for="user-type-admin">관리자</label>
+	    	<input type="radio" id="general-user" name="user-type" checked>
+		    <label for="general-user">일반회원</label>
+		    <input type="radio" id="admin-user" name="user-type">
+		    <label for="admin-user">관리자</label>
 		</div>
-		<div class="form-group" id="user-name-wrap">
-	    	<label for="user-name">이름</label>
-	    	<input type="text" class="form-control" id="user-name" placeholder="이름을 입력해주세요." maxlength="10">
-	    	<div class="error_msg"></div>
+		<div class="general-user signup-wrap">
+			<div class="form-group">
+		    	<label for="general-user-name">이름</label>
+		    	<input type="text" class="form-control user-name" id="general-user-name" placeholder="이름을 입력해주세요." minlength="2" maxlength="10">
+		    	<div class="error-msg"></div>
+			</div>
+			<div class="form-group">
+		    	<label for="general-user-id">아이디</label>
+		    	<div class="div-wrap">
+		    		<input type="text" class="form-control user-id" id="general-user-id" placeholder="아이디를 입력해주세요." minlength="5" maxlength="12">
+		    		<input type="button" value="중복확인" class="btn small-btn check-id" onclick="checkDuplicateUserId($(this));" />
+		    	</div>
+		    	<div class="error-msg"></div>
+			</div>
+		  	<div class="form-group">
+		    	<label for="general-user-pwd">비밀번호</label>
+		    	<input type="password" class="form-control user-pwd" id="general-user-pwd" placeholder="비밀번호를 입력해주세요." minlength="5" maxlength="20">
+		    	<div class="error-msg"></div>
+		  	</div>
+		  	<div class="form-group">
+		    	<label for="general-user-confirm-pwd">비밀번호 확인</label>
+		    	<input type="password" class="form-control user-confirm-pwd" id="general-user-confirm-pwd" placeholder="비밀번호를 한 번 더 입력해주세요." minlength="5" maxlength="20">
+		    	<div class="error-msg"></div>
+		  	</div>
+			<div class="form-group">
+		    	<label for="general-user-email">이메일</label>
+		    	<input type="text" class="form-control" id="general-user-email" placeholder="이메일을 입력해주세요." maxlength="30">
+		    	<div class="error-msg"></div>
+			</div>
+			<div class="form-group">
+		    	<label for="general-user-phone-1">전화번호</label>
+		    	<div class="div-wrap">
+			    	<input type="text" class="form-control" id="general-user-phone-1" placeholder="첫 번째 자리 입력해주세요." value="010" maxlength="3">
+			    	<span class="phone-hyphen">-</span>
+			    	<input type="text" class="form-control" id="general-user-phone-2" placeholder="두 번째 자리 입력해주세요." maxlength="4">
+			    	<span class="phone-hyphen">-</span>
+			    	<input type="text" class="form-control" id="general-user-phone-3" placeholder="세 번째 자리 입력해주세요." maxlength="4">
+		    	</div>
+		    	<div class="error-msg"></div>
+			</div>
+			<a class="btn large-btn confirm-btn" onclick="confirmInput($(this).parent());">회원가입</a>
 		</div>
-		<div class="form-group" id="user-id-wrap">
-	    	<label for="user-id">아이디</label>
-	    	<div class="div_wrap">
-	    		<input type="text" class="form-control" id="user-id" placeholder="아이디를 입력해주세요." minlength="6" maxlength="12">
-	    		<input type="button" value="중복확인" class="confirm_btn check_id" onclick="checkId();" />
-	    	</div>
-	    	<div class="error_msg"></div>
+		<div class="admin-user signup-wrap">
+			<div class="form-group">
+		    	<label for="admin-user-name">이름</label>
+		    	<input type="text" class="form-control user-name" id="admin-user-name" placeholder="이름을 입력해주세요." maxlength="10">
+		    	<div class="error-msg"></div>
+			</div>
+			<div class="form-group">
+		    	<label for="admin-user-id">아이디</label>
+		    	<div class="div-wrap">
+		    		<input type="text" class="form-control user-id" id="admin-user-id" placeholder="아이디를 입력해주세요." minlength="6" maxlength="12">
+		    		<input type="button" value="중복확인" class="btn small-btn check-id" onclick="checkDuplicateUserId($(this));" />
+		    	</div>
+		    	<div class="error-msg"></div>
+			</div>
+		  	<div class="form-group">
+		    	<label for="admin-user-pwd">비밀번호</label>
+		    	<input type="password" class="form-control user-pwd" id="admin-user-pwd" placeholder="비밀번호를 입력해주세요." minlength="8" maxlength="20">
+		    	<div class="error-msg"></div>
+		  	</div>
+		  	<div class="form-group">
+		    	<label for="admin-user-confirm-pwd">비밀번호 확인</label>
+		    	<input type="password" class="form-control user-confirm-pwd" id="admin-user-confirm-pwd" placeholder="비밀번호를 한 번 더 입력해주세요." minlength="8" maxlength="20">
+		    	<div class="error-msg"></div>
+		  	</div>
+		  	<a class="btn large-btn confirm-btn" onclick="confirmInput($(this).parent());">회원가입</a>
 		</div>
-	  	<div class="form-group" id="user-pwd-wrap">
-	    	<label for="pwd">비밀번호</label>
-	    	<input type="password" class="form-control" id="pwd" placeholder="비밀번호를 입력해주세요." minlength="8" maxlength="20">
-	    	<div class="error_msg"></div>
-	  	</div>
-	  	<div class="form-group" id="user-confirm-pwd-wrap">
-	    	<label for="confirm-pwd">비밀번호 확인</label>
-	    	<input type="password" class="form-control" id="confirm-pwd" placeholder="비밀번호를 한 번 더 입력해주세요." minlength="8" maxlength="20">
-	    	<div class="error_msg"></div>
-	  	</div>
-		<div class="form-group" id="user-email-wrap">
-	    	<label for="user-email">이메일</label>
-	    	<input type="email" class="form-control" id="user-email" placeholder="이메일을 입력해주세요." maxlength="30">
-	    	<div class="error_msg"></div>
-		</div>
-		<div class="form-group" id="user-phone-num-wrap">
-	    	<label for="userEmail">전화번호</label>
-	    	<div class="div_wrap">
-		    	<input type="text" class="form-control" id="user-phone-1" value="010" maxlength="3">
-		    	<span class="phone_hyphen">-</span>
-		    	<input type="text" class="form-control" id="user-phone-2" placeholder="0000" maxlength="4">
-		    	<span class="phone_hyphen">-</span>
-		    	<input type="text" class="form-control" id="user-phone-3" placeholder="0000" maxlength="4">
-	    	</div>
-	    	<div class="error_msg"></div>
-		</div>
-	  	<a class="btn confirm_btn" onclick="signupAction();">회원가입</a>
-	  	<a class="btn" href="/">홈</a>
+	  	<a class="btn large-btn sub-btn" href="/">홈</a>
     </div>
 </body>
 </html>

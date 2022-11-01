@@ -12,8 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class ApiController {
 	
-	// REST Api Controller
-	// db 접근할 수 있는 dba
+	/** 테이블 생성 */
 	@GetMapping("/create_table")
 	public HashMap<String, String> create_table() {
 		HashMap<String, String> result = new HashMap<String, String>();
@@ -30,19 +29,22 @@ public class ApiController {
 		return result;
 	}
 	
-	// login_action
+	/** 로그인 */
 	@PostMapping("/login_action")
 	public String login_action(@ModelAttribute User user, HttpServletRequest request) {
 		
+		// step 1 : 프론트에서 전달받은 user 정보 변수 저장
 		String userId = user.getId();
 		System.out.println("userId : " + userId);
 		String userPw = user.getPwd();
 		System.out.println("userPwd : " + userPw);
 		
+		// step 2 : 유저 정보있는지 DB 조회
 		DB db = new DB("tb_user");
 		boolean isSuccess = db.confirmUser(userId, userPw);
 		String resultMsg = "";
 		
+		// step 3 : 유저 정보가 있을 경우 유저 유형과 이름 가져오기
 		if (isSuccess) {
 			HashMap<String, String> result = new HashMap<String, String>();
 			result = db.getUserInfo(userId);
@@ -60,22 +62,24 @@ public class ApiController {
 		}
 	}
 	
-	// logout_action
+	/** 로그아웃 */
 	@GetMapping("/logout_action")
 	public String logout_action(HttpServletRequest request) {
 		request.getSession().invalidate();
-		return "로그아웃 성공";
+		return "로그아웃 되었습니다.";
 	}
 	
-	// check_id_action
-	@PostMapping("/check_id_action")
+	/** 회원가입시 아이디 중복체크 */
+	@PostMapping("/check_duplicate_userid_action")
 	public String check_id_action(@ModelAttribute User user) {
 		
+		// step 1 : 프론트에서 전달받은 user 정보 변수 저장
 		String userId = user.getId();
 		System.out.println("userId : " + userId);
 		
+		// step 2 : 동일한 아이디가 있는지 DB 조회
 		DB db = new DB("tb_user");
-		boolean isSuccess = db.checkUserId(userId);
+		boolean isSuccess = db.checkDuplicateUserId(userId);
 		String resultMsg = "";
 		
 		if (isSuccess) {

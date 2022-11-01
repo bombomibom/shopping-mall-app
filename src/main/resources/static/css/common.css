@@ -1,5 +1,6 @@
 @charset "UTF-8";
 
+/* 공통 */
 *{
 	margin: 0;
 	padding: 0;
@@ -8,14 +9,12 @@ a{
 	color: #333;
 	text-decoration: none;
 }
-
-/* 공통 */
-.container_common{
+.container-common{
 	width: 50%;
 	position: absolute;
 	left: 50%; 
 }
-.container_common h1{
+.container-common h1{
 	margin-bottom: 60px;
 	text-align: center;
 	font-size: 10rem;
@@ -30,51 +29,59 @@ a{
                  24px 24px 0px #c11a2b, 
                  28px 28px 0px #c11a2b 
 }
-.container_common .btn{
-	width: 100%; 
+.container-common .btn{
 	height: 45px;
 	line-height: 45px;
 	padding: 0;
+	border: none;
+	border-radius: 4px;
+	background: lightgray;
+	color: #fff;
 }
-.container_common .confirm_btn{
+.container-common .large-btn{
+	width: 100%;
+}
+.container-common .small-btn{
+	margin-left: 10px;
+	padding: 0 20px;
+}
+.container-common .btn.sub-btn{
+	background: none;
+	color: #000;
+}
+.container-common .btn.activate-btn{
 	background: #efa032;
 	color: #fff;
 	transition: .2s;
 }
-.container_common .confirm_btn:hover{
+.container-common .btn.activate-btn:hover{
 	color: #fff;
 	box-shadow: #052939 2px 2px 2px;
 }
+.container-common .error-msg{
+	color: red;
+	margin: 5px 0 0 7px;
+}
 
 /* login */
-.login_container{
+.container-login{
 	top: 50%;
 	transform: translate(-50%, -50%);
 }
 
 /* signup */
-.signup_container{
+.container-signup{
 	transform: translateX(-50%);
 }
-.signup_container #user-type-wrap label{
+.container-signup #user-type-wrap label{
 	margin-right: 10px;
 }
-.signup_container .div_wrap{
+.container-signup .div-wrap{
 	display: flex;
 }
-.signup_container .check_id{
-	border: none;
-	border-radius: 4px;
-	margin-left: 10px;
-	padding: 0 20px;
-}
-.signup_container .phone_hyphen{
+.container-signup .phone-hyphen{
 	line-height: 45px;
 	padding: 0 10px;
-}
-.signup_container .error_msg{
-	color: red;
-	margin: 5px 0 0 7px;
 }
 
 /* bootstrap 커스터마이징 */

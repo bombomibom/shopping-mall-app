@@ -6,19 +6,19 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class ViewController {
 	
-	// login page
+	/** 로그인 페이지 */
 	@GetMapping("/")
 	public String root() {
 		return "login";
 	}
 	
-	// signup page
+	/** 회원가입 페이지 */ 
 	@GetMapping("/signup")
 	public String signup() {
 		return "signup";
 	}
 	
-	// mainList page
+	/** 메인 페이지 */
 	@GetMapping("/main")
 	public String mainList() {
 		return "main";

@@ -9,27 +9,38 @@
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script th:inline="javascript" src="/js/main.js"></script>
-    <title>로그인</title>
+    <title>BOBO SHOP :: 로그인</title>
+    <script>
+    
+    $(document).ready(function(){
+
+	    $("input").change(function(){
+	    	whenInputchange();
+		})
+		
+    });
+    </script>
 </head>
 <body>
-    <div class="container_common login_container">
+    <div class="container-common container-login">
 		<h1>BOBO SHOP</h1>
-		<div class="form-group">
-	    	<label for="user-id">아이디</label>
-	    	<input type="text" class="form-control" id="user-id" placeholder="아이디를 입력해주세요.">
-		</div>
-	  	<div class="form-group">
-	    	<label for="user-pwd">패스워드</label>
-	    	<input type="password" class="form-control" id="user-pwd" placeholder="비밀번호를 입력해주세요.">
+		<div class="login-wrap">
+			<div class="form-group">
+		    	<label for="id">아이디</label>
+		    	<input type="text" class="form-control" id="id" placeholder="아이디를 입력해주세요." minlength="5" maxlength="12">
+		    	<div class="error-msg"></div>
+			</div>
+		  	<div class="form-group">
+		    	<label for="pwd">패스워드</label>
+		    	<input type="password" class="form-control" id="pwd" placeholder="비밀번호를 입력해주세요." minlength="5" maxlength="20">
+		    	<div class="error-msg"></div>
+		  	</div>
+		  	<div class="checkbox">
+		    	<label><input type="checkbox">로그인 상태 유지(추후)</label>
+		  	</div>
 	  	</div>
-	  	<div class="checkbox">
-	    	<label><input type="checkbox">로그인 상태 유지(추후)</label>
-	  	</div>
-	  	<div class="errorMsg">
-	  		
-	  	</div>
-	  	<a class="btn confirm_btn" onclick="loginAction();">로그인</a>
-	  	<a class="btn" href="signup">회원가입</a>
+	  	<a class="btn large-btn confirm-btn" onclick="confirmInput($(this).parent(), '/login_action');">로그인</a>
+	  	<a class="btn large-btn sub-btn" href="signup">회원가입</a>
     </div>
 </body>
 </html>
